@@ -18,7 +18,7 @@ public class Main {
                 } else if (countUser < 1) {
                     System.out.println("Это некорректное значение для подсчёта, введите корректное количество гостей");
                 } else {
-                    nameProd.nameProde(countUser);
+                    NameProd.nameProde(countUser);
                     break;
                 }
             } else {
@@ -29,50 +29,66 @@ public class Main {
     }
 
 }
- class nameProd {
-    public static void nameProde(int countUser) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите название товара");
-        double sum = 0;
-        String list = "Список товаров: \n";
-        String line = null;
-        String rubl = null;
-        double sale = 0;
-        while ((line = scanner.next()) != null) {
-            if (line.equalsIgnoreCase("Завершить")) {
-                System.out.println(list);
-                int num = (int) (sum / countUser);
-                if (num % 100 > 4 && num % 100 < 21) {
-                    rubl = "рублей";
-                } else if (num % 10 == 1) {
-                    rubl = "рубль";
-                } else if (num % 10 > 1 && num % 10 < 5) {
-                    rubl = "рубля";
-                }
+ class NameProd {
+     public static void nameProde(int countUser) {
+         Scanner scanner = new Scanner(System.in);
+         System.out.println("Введите название товара");
+         double sum = 0;
+         String list = "Список товаров: \n";
+         String line = null;
 
-                String str2 = String.format("Каждый должен заплатить: %.2f" + " " + rubl, sum / countUser);
-                System.out.println(str2);
-                break;
-            }
+         double sale = 0;
+         while ((line = scanner.next()) != null) {
+             if (line.equalsIgnoreCase("Завершить")) {
+                 System.out.println(list);
+                 int num = (int) (sum / countUser);
 
-            System.out.println("Введите стоимость товара");
-            while (true) {
-                if (scanner.hasNextDouble()) {
-                    if (sale < 0) {
-                        System.out.println("Это некорректное значение для подсчёта");
-                    } else if (sale >= 0) {
-                        sale = scanner.nextDouble();
-                        list = list + line + "\n";
-                        sum = sum + sale;
-                        System.out.println("Товар " + line + " за " + sale + " успешно добавлен. Введите следующий товар");
-                        break;
-                    }
-                } else {
-                    System.out.println("Это не число, введите ещё");
-                    scanner.next();
-                }
-            }
-        }
-    }
+
+                String rubl = rubb(num);;
+
+
+                 String str2 = String.format("Каждый должен заплатить: %.2f" + " " + rubl, sum / countUser);
+                 System.out.println(str2);
+                 break;
+             }
+
+             System.out.println("Введите стоимость товара");
+             while (true) {
+                 if (scanner.hasNextDouble()) {
+                     sale = scanner.nextDouble();
+                     if (sale < 0) {
+                         System.out.println("Это некорректное значение для подсчёта");
+                     } else if (sale >= 0) {
+                         // sale = scanner.nextDouble();
+                         list = list + line + "\n";
+                         sum = sum + sale;
+                         System.out.println("Товар " + line + " за " + sale + " успешно добавлен. Введите следующий товар. Если необходимо закончить ввод данных, то введите \"Завершить\"");
+                         break;
+                     }
+                 } else {
+                     System.out.println("Это не число, введите ещё");
+                     scanner.next();
+                 }
+             }
+         }
+     }
+
+     public static String rubb(int num) {
+         String rubl = null;
+         // if(  num % 100 > 4 && num % 100 < 21)     {
+             // rubl =  "рублей";
+   //  }
+           if(num %10==1)    {
+              rubl =  "рубль";
+     }
+          else if(num % 10 > 1 && num % 10 < 5)
+               {
+              rubl =  "рубля";
+     }
+          else {//if(  num % 100 > 25 && num % 100 < 21)     {
+              rubl =  "рублей";
+          }
+return rubl;
+     }
 }
 //System.out.println(String.format("%s,%d"a, b))ррр
