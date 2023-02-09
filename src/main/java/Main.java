@@ -75,10 +75,9 @@ public class Main {
 
      public static String rubb(int num) {
          String rubl = null;
-         // if(  num % 100 > 4 && num % 100 < 21)     {
-             // rubl =  "рублей";
-   //  }
-           if(num %10==1)    {
+         if(  num % 100 > 4 && num % 100 < 21)     {
+             rubl =  "рублей";
+    }       else   if(num %10==1)    {
               rubl =  "рубль";
      }
           else if(num % 10 > 1 && num % 10 < 5)
